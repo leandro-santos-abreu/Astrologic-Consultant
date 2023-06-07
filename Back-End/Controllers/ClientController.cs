@@ -19,10 +19,22 @@ namespace Back_End.Controllers
             _appDbContext = appDbContext;
         }
 
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet()]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult Search()
         {
-            return new string[] { "value1", "value2" };
+            var clients = _appDbContext.Client;
+
+            if (clients == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(clients);
+            }
+
+
         }
 
         // GET api/<ClienteController>/5
@@ -47,11 +59,15 @@ namespace Back_End.Controllers
         // POST api/<ClienteController>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public IActionResult Post(ClientEntityModel client)
+        public IActionResult Post(List<ClientEntityModel> clients)
         {
-            _appDbContext.Client.Add(client);
-            _appDbContext.SaveChanges();
-            return CreatedAtAction(nameof(GetById), new { id = client.ClientId }, client);
+            foreach(var client in clients)
+            {
+                _appDbContext.Client.Add(client);
+                _appDbContext.SaveChanges();
+
+            }
+            return CreatedAtAction(nameof(GetById), new { id = string.Join(",", clients.Select(s => s.ClientId)) }, clients);
 
         }
 
