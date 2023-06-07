@@ -11,6 +11,7 @@ namespace Back_End.Dados
         }
 
         public DbSet<ClientEntityModel> Client { get; set; }
+        public DbSet<SignEntityModel> Sign { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +22,17 @@ namespace Back_End.Dados
                 c.Property(x => x.Nome);
                 c.Property(x => x.Login);
                 c.Property(x => x.Senha);
+                c.Property(x => x.DataNascimento);
+
+            });
+
+            modelBuilder.Entity<SignEntityModel>(c =>
+            {
+                c.HasKey(x => x.SignId);
+
+                c.Property(x => x.Nome);
+                c.Property(x => x.DataInicial);
+                c.Property(x => x.DataFinal);
 
             });
 
