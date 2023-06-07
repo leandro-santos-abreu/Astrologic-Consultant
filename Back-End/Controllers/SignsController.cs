@@ -6,7 +6,7 @@ namespace Back_End.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SignsController : ControllerBase
+    public class SignsController : Controller
     {
         // GET: api/<SignosController>
         [HttpGet]
