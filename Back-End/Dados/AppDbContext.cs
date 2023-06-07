@@ -33,6 +33,7 @@ namespace Back_End.Dados
                 c.Property(x => x.Nome);
                 c.Property(x => x.DataInicial);
                 c.Property(x => x.DataFinal);
+                c.Property(x => x.Mensagem);
 
             });
 

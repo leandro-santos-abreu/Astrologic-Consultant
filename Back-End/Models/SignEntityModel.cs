@@ -6,7 +6,7 @@
         public string Nome { get; set; }
         public string DataInicial { get; set; }
         public string DataFinal { get; set; }
-
+        public string Mensagem { get; set; }
 
         public bool VerificarSigno(DateTime dataRecebida)
         {
